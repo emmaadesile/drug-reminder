@@ -1,0 +1,51 @@
+{
+  "name": "drug-reminder",
+  "version": "1.0.0",
+  "description": "A drug prescription reminder web app",
+  "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+    "@babel/preset-env": "^7.2.3",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node",
+    "dev": "nodemon --exec npm run babel-node -- ./src/index.js",
+    "build": "babel src --out-dir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmaadesile/drug-reminder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emmaadesile/drug-reminder/issues"
+  },
+  "homepage": "https://github.com/emmaadesile/drug-reminder#readme"
+}
