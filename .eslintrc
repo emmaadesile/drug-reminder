@@ -1,0 +1,39 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "rule": {
+    "one-var": 1,
+    "one-var-declaration-per-line": 1,
+    "consistent-return": 1,
+    "comma-dangle": "warn",
+    "no-console": "off",
+    "arrow-body-style": ["error", "as-needed"],
+    "prefer-destructuring": [
+      "error",
+      {
+        "object": true,
+        "array": true
+      }
+    ],
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true
+        }
+      }
+    ],
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "ecmaFeatures": {
+        "classes": true
+      }
+    }
+  }
+}
