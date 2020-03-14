@@ -6,7 +6,7 @@ describe('user controller', () => {
       firstName: 'dave',
       lastName: 'batista',
       email: 'davebatista@mail.com',
-      password: 'davebatista'
+      password: 'davebatista',
     };
   });
 });

@@ -3,17 +3,18 @@ module.exports = (sequelize, DataTypes) => {
     'Prescription',
     {
       drugName: DataTypes.STRING,
-      dosage: DataTypes.STRING,
-      verifyDrugUsage: DataTypes.STRING,
-      drugUsePerDay: DataTypes.INTEGER,
-      timeOfUsage: DataTypes.ENUM([
+      dosePerTime: DataTypes.INTEGER,
+      dosePerDay: DataTypes.INTEGER,
+      usageDuration: DataTypes.INTEGER,
+      usageFreq: DataTypes.ENUM([
         'Morning',
         'Evening',
         'Morning Evening',
         'Morning Afternoon',
         'Afternoon Evening',
         'Morning Afternoon Evening'
-      ])
+      ]),
+      verifyDrugUsage: DataTypes.INTEGER,
     },
     {}
   );
@@ -22,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     const { User } = models;
 
     Prescription.belongsTo(User, {
-      foreignKey: 'userId',
+      foreignKey: 'userId'
     });
   };
   return Prescription;
