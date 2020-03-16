@@ -14,8 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
       },
       hashedPassword: {
         type: DataTypes.STRING,
@@ -26,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       hooks: {
         beforeCreate: signupDetails => {
-          // eslint-disable-next-line no-param-reassign
           signupDetails.hashedPassword = bcrypt.hashSync(
             signupDetails.hashedPassword,
             10

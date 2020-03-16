@@ -5,11 +5,11 @@
     "es6": true,
     "mocha": true
   },
-  "rules": {
+  "rule": {
     "one-var": 1,
     "one-var-declaration-per-line": 1,
     "consistent-return": 1,
-    "comma-dangle": "off",
+    "comma-dangle": "warn",
     "no-console": "off",
     "arrow-body-style": ["error", "as-needed"],
     "prefer-destructuring": [

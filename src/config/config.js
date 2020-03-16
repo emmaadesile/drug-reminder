@@ -7,7 +7,7 @@ const {
   DB_PASSWORD,
   DB_PORT,
   DB_HOST,
-  DB_URL_PROD,
+  DB_URL_PROD
 } = process.env;
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
     database: DB_NAME,
     port: DB_PORT,
     host: DB_HOST,
-    dialect: 'postgres',
+    dialect: 'postgres'
   },
   test: {
     username: DB_USERNAME,
@@ -25,9 +25,9 @@ module.exports = {
     database: DB_NAME_TEST,
     port: DB_PORT,
     host: DB_HOST,
-    dialect: 'postgres',
+    dialect: 'postgres'
   },
   production: {
-    use_env_variable: DB_URL_PROD,
-  },
+    use_env_variable: DB_URL_PROD
+  }
 };
