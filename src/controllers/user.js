@@ -1,5 +1,11 @@
-import { Users } from '../models';
+import { User } from '../models';
+import { validateSignup } from '../utils/validation';
+import TokenHelper from '../utils/tokenHelper';
 
+/**
+ * @description user controller
+ * @class UsersController
+ */
 class UserController {
   /**
    * @description Signup method for new users
@@ -9,19 +15,46 @@ class UserController {
    * @returns {object} The body of the response message
    */
   static signup(req, res, next) {
-    const newUser = {
-      firstName: 'dave',
-      lastName: 'batista',
-      email: 'davebatista@mail.com',
-      password: 'davebatista'
-    };
-    return Users.create(newUser).then(userDetails => {
-      res.status(200).json({
-        status: 'success',
-        message: 'Signup was successful',
-        user: userDetails
+    const { error, isValid } = validateSignup(req.body);
+    const { firstName, lastName, email, password } = req.body;
+    const newUser = { firstName, lastName, email, hashedPassword: password };
+
+    if (!isValid) {
+      return res.status(400).json({
+        error,
+        status: 'error'
       });
-    });
+    }
+
+    return User.findOne({
+      where: { email }
+    })
+      .then(user => {
+        if (user) {
+          return res.status(409).json({
+            status: 'error',
+            error: 'Email already exists'
+          });
+        }
+        return User.create(newUser)
+          .then(newUserDetails => {
+            const { dataValues } = newUserDetails;
+            // remove hashedPassword from the user details
+            const { id, hashedPassword, ...rest } = dataValues;
+            const token = TokenHelper.generateToken(dataValues);
+
+            res.status(200).json({
+              status: 'success',
+              message: 'Signup was successful',
+              user: {
+                ...rest,
+                token
+              }
+            });
+          })
+          .catch(next);
+      })
+      .catch(next);
   }
 }
 

@@ -1,0 +1,104 @@
+import { expect } from '../config/setup';
+import testData from '../config/testData';
+import { validateSignup, validateLogin } from '../../utils/validation';
+
+describe('validate signup', () => {
+  it('returns an error for invalid firstname', done => {
+    const resp = {
+      error: { firstName: 'Please enter your firstName' },
+      isValid: false
+    };
+
+    expect(validateSignup(testData.withoutFirstName)).to.have.a.property(
+      'error'
+    );
+    expect(validateSignup(testData.withoutFirstName)).to.have.a.property(
+      'isValid'
+    );
+    expect(JSON.stringify(validateSignup(testData.withoutFirstName))).to.equal(
+      JSON.stringify(resp)
+    );
+    done();
+  });
+
+  it('returns an error for invalid lastname', done => {
+    const resp = {
+      error: { lastName: 'Please enter your lastName' },
+      isValid: false
+    };
+    expect(validateSignup(testData.withoutLastName)).to.have.a.property(
+      'error'
+    );
+    expect(validateSignup(testData.withoutLastName)).to.have.a.property(
+      'isValid'
+    );
+    expect(JSON.stringify(validateSignup(testData.withoutLastName))).to.equal(
+      JSON.stringify(resp)
+    );
+    done();
+  });
+
+  it('returns an error for invalid password', done => {
+    const resp = {
+      error: { password: 'Please enter your password' },
+      isValid: false
+    };
+
+    expect(validateSignup(testData.withoutPassword)).to.have.a.property(
+      'error'
+    );
+    expect(validateSignup(testData.withoutPassword)).to.have.a.property(
+      'isValid'
+    );
+    expect(JSON.stringify(validateSignup(testData.withoutPassword))).to.equal(
+      JSON.stringify(resp)
+    );
+    done();
+  });
+
+  it('returns an error if password does not contain a number', done => {
+    const resp = {
+      error: { password: 'Password must contain a number' },
+      isValid: false
+    };
+
+    expect(validateSignup(testData.passwordWithoutNum)).to.have.a.property(
+      'error'
+    );
+    expect(validateSignup(testData.passwordWithoutNum)).to.have.a.property(
+      'isValid'
+    );
+    expect(
+      JSON.stringify(validateSignup(testData.passwordWithoutNum))
+    ).to.equal(JSON.stringify(resp));
+    done();
+  });
+
+  it('returns an error if email is empty', done => {
+    const resp = {
+      error: { email: 'Please enter your email' },
+      isValid: false
+    };
+
+    expect(validateSignup(testData.withoutEmail)).to.have.a.property('error');
+    expect(validateSignup(testData.withoutEmail)).to.have.a.property('isValid');
+    expect(JSON.stringify(validateSignup(testData.withoutEmail))).to.equal(
+      JSON.stringify(resp)
+    );
+    done();
+  });
+
+  it('returns an error for invalid email', done => {
+    const resp = {
+      error: { email: 'Please enter a valid email' },
+      isValid: false
+    };
+
+    expect(validateSignup(testData.invalidEmail)).to.have.a.property('error');
+    expect(validateSignup(testData.invalidEmail)).to.have.a.property('isValid');
+    expect(JSON.stringify(validateSignup(testData.invalidEmail))).to.equal(
+      JSON.stringify(resp)
+    );
+    done();
+  });
+});
