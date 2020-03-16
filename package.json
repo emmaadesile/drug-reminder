@@ -45,8 +45,8 @@
   },
   "scripts": {
     "start": "node ./dist/index.js",
-    "test": "nyc mocha --require @babel/register --timeout 2000ms --exit",
-    "pretest": "NODE_ENV=test npm run migrate:all",
+    "test": "NODE_ENV=test nyc mocha --require @babel/register --timeout 2000ms --exit",
+    "pretest": "NODE_ENV=test npm run migrate:all && NODE_ENV=test npm run seed",
     "babel-node": "babel-node",
     "dev": "nodemon --exec npm run babel-node -- ./src/index.js",
     "build": "babel src --out-dir dist",
@@ -54,7 +54,9 @@
     "migrate:undo": "./node_modules/.bin/sequelize db:migrate:undo:all",
     "migrate:all": "npm run migrate:undo && npm run migrate",
     "lint": "./node_modules/.bin/eslint src --fix",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "seed": "sequelize db:seed:all",
+    "seed:undo": "sequelize db:seed:undo"
   },
   "repository": {
     "type": "git",

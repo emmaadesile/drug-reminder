@@ -21,8 +21,8 @@ class TokenHelper {
    * @memberof TokenHelper
    */
   static generateToken(user) {
-    const { id, firstName } = user;
-    const token = jwt.sign({ id, firstName }, secret, {
+    const { id, firstName, lastName, email } = user;
+    const token = jwt.sign({ id, firstName, lastName, email }, secret, {
       expiresIn: '24h'
     });
 
