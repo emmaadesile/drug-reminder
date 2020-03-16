@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A drug prescription reminder web app",
   "main": "index.js",
+  "engines": {
+    "node": "12.16.1"
+  },
   "dependencies": {
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
@@ -41,7 +44,7 @@
     "prettier": "^1.19.1"
   },
   "scripts": {
-    "start": "NODE_ENV=production npm run build && node ./dist/index.js",
+    "start": "node ./dist/index.js",
     "test": "nyc mocha --require @babel/register --timeout 2000ms --exit",
     "pretest": "NODE_ENV=test npm run migrate:all",
     "babel-node": "babel-node",
@@ -50,7 +53,8 @@
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "migrate:undo": "./node_modules/.bin/sequelize db:migrate:undo:all",
     "migrate:all": "npm run migrate:undo && npm run migrate",
-    "lint": "./node_modules/.bin/eslint src --fix"
+    "lint": "./node_modules/.bin/eslint src --fix",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
