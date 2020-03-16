@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A drug prescription reminder web app",
   "main": "index.js",
+  "engines": {
+    "node": "12.16.1"
+  },
   "dependencies": {
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
