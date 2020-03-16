@@ -1,8 +1,9 @@
 import { User } from '../models';
 import { validateSignup } from '../utils/validation';
+import TokenHelper from '../utils/tokenHelper';
 
 /**
- * @description controller class with methods for user endpoints
+ * @description user controller
  * @class UsersController
  */
 class UserController {
@@ -37,10 +38,18 @@ class UserController {
         }
         return User.create(newUser)
           .then(newUserDetails => {
+            const { dataValues } = newUserDetails;
+            // remove hashedPassword from the user details
+            const { id, hashedPassword, ...rest } = dataValues;
+            const token = TokenHelper.generateToken(dataValues);
+
             res.status(200).json({
               status: 'success',
               message: 'Signup was successful',
-              user: newUserDetails
+              user: {
+                ...rest,
+                token
+              }
             });
           })
           .catch(next);

@@ -48,6 +48,15 @@ if (!isProduction) {
 // API version v1
 app.use('/api', routes);
 
+// 404 error handler
+app.use((req, res, next) => {
+  res.status(404).json({
+    status: 'success',
+    message: 'Hey there! Seems you got in the rabbit hole'
+  });
+  next();
+});
+
 server.listen(port, () => console.log(`🚀 Server listening on port ${port}`));
 
 export default app;
