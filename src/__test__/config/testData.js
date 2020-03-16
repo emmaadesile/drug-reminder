@@ -1,7 +1,20 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import faker from 'faker';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const userData = {
+  nonExistingUser: {
+    email: faker.internet.email(),
+    password: faker.internet.password()
+  },
+  existingUser: {
+    firstName: 'Thor',
+    lastName: 'Odin',
+    email: 'thorodin@asgard.com',
+    password: process.env.TEST_USER_PASSWORD
+  },
   validData: {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
@@ -43,7 +56,7 @@ const userData = {
     lastName: faker.name.lastName(),
     email: 'drake@mail',
     password: 'drake50'
-  },
+  }
 };
 
 export default userData;

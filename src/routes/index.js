@@ -15,4 +15,7 @@ router.get('/', (req, res, next) => {
 // signup route
 router.post('/signup', UserController.signup);
 
+// login route
+router.post('/login', UserController.login);
+
 export default router;
