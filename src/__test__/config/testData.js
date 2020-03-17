@@ -59,4 +59,14 @@ const userData = {
   }
 };
 
-export default userData;
+const prescription = {
+  validPrescription: {
+    drugName: 'Diazepam',
+    dosePerTime: 2,
+    dosePerDay: 4,
+    usageDuration: 10,
+    usageFreq: 'Morning Evening'
+  }
+};
+
+export { userData, prescription };

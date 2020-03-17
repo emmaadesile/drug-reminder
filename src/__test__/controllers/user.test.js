@@ -1,6 +1,8 @@
 import { chai, expect } from '../config/setup';
-import userData from '../config/testData';
+import { userData } from '../config/testData';
 import app from '../../index';
+
+console.log(userData);
 
 describe('user controller', () => {
   describe('Signup', () => {

@@ -1,5 +1,5 @@
 import { expect } from '../config/setup';
-import testData from '../config/testData';
+import { userData } from '../config/testData';
 import { validateSignup, validateLogin } from '../../utils/validation';
 
 describe('validate signup', () => {
@@ -9,13 +9,13 @@ describe('validate signup', () => {
       isValid: false
     };
 
-    expect(validateSignup(testData.withoutFirstName)).to.have.a.property(
+    expect(validateSignup(userData.withoutFirstName)).to.have.a.property(
       'error'
     );
-    expect(validateSignup(testData.withoutFirstName)).to.have.a.property(
+    expect(validateSignup(userData.withoutFirstName)).to.have.a.property(
       'isValid'
     );
-    expect(JSON.stringify(validateSignup(testData.withoutFirstName))).to.equal(
+    expect(JSON.stringify(validateSignup(userData.withoutFirstName))).to.equal(
       JSON.stringify(resp)
     );
     done();
@@ -26,13 +26,13 @@ describe('validate signup', () => {
       error: { lastName: 'Please enter your lastName' },
       isValid: false
     };
-    expect(validateSignup(testData.withoutLastName)).to.have.a.property(
+    expect(validateSignup(userData.withoutLastName)).to.have.a.property(
       'error'
     );
-    expect(validateSignup(testData.withoutLastName)).to.have.a.property(
+    expect(validateSignup(userData.withoutLastName)).to.have.a.property(
       'isValid'
     );
-    expect(JSON.stringify(validateSignup(testData.withoutLastName))).to.equal(
+    expect(JSON.stringify(validateSignup(userData.withoutLastName))).to.equal(
       JSON.stringify(resp)
     );
     done();
@@ -44,13 +44,13 @@ describe('validate signup', () => {
       isValid: false
     };
 
-    expect(validateSignup(testData.withoutPassword)).to.have.a.property(
+    expect(validateSignup(userData.withoutPassword)).to.have.a.property(
       'error'
     );
-    expect(validateSignup(testData.withoutPassword)).to.have.a.property(
+    expect(validateSignup(userData.withoutPassword)).to.have.a.property(
       'isValid'
     );
-    expect(JSON.stringify(validateSignup(testData.withoutPassword))).to.equal(
+    expect(JSON.stringify(validateSignup(userData.withoutPassword))).to.equal(
       JSON.stringify(resp)
     );
     done();
@@ -62,14 +62,14 @@ describe('validate signup', () => {
       isValid: false
     };
 
-    expect(validateSignup(testData.passwordWithoutNum)).to.have.a.property(
+    expect(validateSignup(userData.passwordWithoutNum)).to.have.a.property(
       'error'
     );
-    expect(validateSignup(testData.passwordWithoutNum)).to.have.a.property(
+    expect(validateSignup(userData.passwordWithoutNum)).to.have.a.property(
       'isValid'
     );
     expect(
-      JSON.stringify(validateSignup(testData.passwordWithoutNum))
+      JSON.stringify(validateSignup(userData.passwordWithoutNum))
     ).to.equal(JSON.stringify(resp));
     done();
   });
@@ -80,9 +80,9 @@ describe('validate signup', () => {
       isValid: false
     };
 
-    expect(validateSignup(testData.withoutEmail)).to.have.a.property('error');
-    expect(validateSignup(testData.withoutEmail)).to.have.a.property('isValid');
-    expect(JSON.stringify(validateSignup(testData.withoutEmail))).to.equal(
+    expect(validateSignup(userData.withoutEmail)).to.have.a.property('error');
+    expect(validateSignup(userData.withoutEmail)).to.have.a.property('isValid');
+    expect(JSON.stringify(validateSignup(userData.withoutEmail))).to.equal(
       JSON.stringify(resp)
     );
     done();
@@ -94,9 +94,9 @@ describe('validate signup', () => {
       isValid: false
     };
 
-    expect(validateSignup(testData.invalidEmail)).to.have.a.property('error');
-    expect(validateSignup(testData.invalidEmail)).to.have.a.property('isValid');
-    expect(JSON.stringify(validateSignup(testData.invalidEmail))).to.equal(
+    expect(validateSignup(userData.invalidEmail)).to.have.a.property('error');
+    expect(validateSignup(userData.invalidEmail)).to.have.a.property('isValid');
+    expect(JSON.stringify(validateSignup(userData.invalidEmail))).to.equal(
       JSON.stringify(resp)
     );
     done();

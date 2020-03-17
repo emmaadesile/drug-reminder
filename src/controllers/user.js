@@ -5,7 +5,7 @@ import TokenHelper from '../utils/tokenHelper';
 
 /**
  * @description user controller
- * @class UsersController
+ * @class UserController
  */
 class UserController {
   /**
