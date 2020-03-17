@@ -2,19 +2,34 @@ module.exports = (sequelize, DataTypes) => {
   const Prescription = sequelize.define(
     'Prescription',
     {
-      drugName: DataTypes.STRING,
-      dosePerTime: DataTypes.INTEGER,
-      dosePerDay: DataTypes.INTEGER,
-      usageDuration: DataTypes.INTEGER,
-      usageFreq: DataTypes.ENUM([
-        'Morning',
-        'Evening',
-        'Morning Evening',
-        'Morning Afternoon',
-        'Afternoon Evening',
-        'Morning Afternoon Evening'
-      ]),
-      verifyDrugUsage: DataTypes.INTEGER,
+      drugName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      dosePerTime: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      dosePerDay: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      usageDuration: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      usageFreq: {
+        type: DataTypes.ENUM([
+          'Morning',
+          'Evening',
+          'Morning Evening',
+          'Morning Afternoon',
+          'Afternoon Evening',
+          'Morning Afternoon Evening'
+        ]),
+        allowNull: false
+      },
+      verifyDrugUsage: DataTypes.INTEGER
     },
     {}
   );

@@ -56,4 +56,54 @@ const validateLogin = data => {
   return { error, isValid: isEmpty(error) };
 };
 
-export { validateSignup, validateLogin };
+/**
+ * @description Validates Prescription details
+ *
+ * @param {string} data
+ * @returns {object} isVlaid, error
+ */
+const validatePrescription = data => {
+  const error = {};
+  const { drugName, dosePerTime, dosePerDay, usageDuration, usageFreq } = data;
+  const frequencies = [
+    'Morning',
+    'Evening',
+    'Morning Evening',
+    'Morning Afternoon',
+    'Afternoon Evening',
+    'Morning Afternoon Evening'
+  ];
+
+  if (!drugName || drugName.trim() === '') {
+    error.drugName = 'Please enter the drug name';
+  }
+
+  if (!dosePerDay) {
+    error.dosePerDay = 'Please enter the doses per day';
+  }
+
+  if (!dosePerTime) {
+    error.dosePerTime = 'Please enter the doses per time';
+  }
+
+  if (!usageDuration) {
+    error.usageDuration = 'Please the duration of the drug';
+  }
+
+  if (!usageFreq || usageFreq.trim() === '') {
+    error.usageFreq = 'Please enter the usage frequency';
+  } else if (usageFreq && !frequencies.includes(usageFreq)) {
+    error.usageFreq = `Usage frequency has to be one of [
+      'Morning',
+      'Evening',
+      'Morning Evening',
+      'Morning Afternoon',
+      'Afternoon Evening',
+      'Morning Afternoon Evening'
+    ]`;
+  }
+
+  return { error, isValid: isEmpty(error) };
+};
+
+export { validateSignup, validateLogin, validatePrescription };
