@@ -37,11 +37,17 @@ module.exports = (sequelize, DataTypes) => {
         ])
       },
       verifyDrugUsage: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         defaultValue: false
       }
     },
-    {}
+    {
+      hooks: {
+        beforeCreate: (prescriptionData) => {
+          prescriptionData.verifyDrugUsage = ''
+        }
+      }
+    }
   );
   Prescription.associate = models => {
     const { User } = models;
