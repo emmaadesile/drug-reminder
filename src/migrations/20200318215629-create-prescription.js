@@ -12,7 +12,7 @@ module.exports = {
         allowNull: false
       },
       prescriptionId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
       drugName: {
@@ -43,8 +43,7 @@ module.exports = {
         allowNull: false
       },
       verifyDrugUsage: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       createdAt: {
         allowNull: false,
@@ -55,7 +54,6 @@ module.exports = {
         type: Sequelize.DATE
       }
     }),
-  down: (queryInterface /* Sequelize */) => {
-    return queryInterface.dropTable('Prescriptions');
-  }
+  down: (queryInterface /* Sequelize */) =>
+    queryInterface.dropTable('Prescriptions')
 };

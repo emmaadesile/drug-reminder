@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       prescriptionId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
       },
       drugName: {
@@ -37,14 +37,18 @@ module.exports = (sequelize, DataTypes) => {
         ])
       },
       verifyDrugUsage: {
-        type: DataTypes.STRING,
-        defaultValue: false
+        type: DataTypes.ARRAY(DataTypes.INTEGER)
       }
     },
     {
       hooks: {
-        beforeCreate: (prescriptionData) => {
-          prescriptionData.verifyDrugUsage = ''
+        beforeCreate: prescriptionData => {
+          const { dosePerTime, usageFreq } = prescriptionData;
+          const freq = usageFreq.split(' ').length * dosePerTime;
+          prescriptionData.verifyDrugUsage = Array.from(
+            { length: freq },
+            () => 0
+          );
         }
       }
     }

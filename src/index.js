@@ -52,7 +52,7 @@ app.use('/api', routes);
 app.use((req, res, next) => {
   res.status(404).json({
     status: 'success',
-    message: 'Hey there! Seems you got in the rabbit hole'
+    message: 'Hey there! Seems you got lost down the rabbit hole'
   });
   next();
 });
