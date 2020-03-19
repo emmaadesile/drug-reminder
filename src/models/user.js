@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      verified: DataTypes.INTEGER
+      verified: {
+        type: DataTypes.BOOLEAN,
+        defaultBValue: false
+      }
     },
     {
       hooks: {
@@ -36,13 +39,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = models => {
-    // associations can be defined here
     const { Prescription } = models;
 
     User.hasMany(Prescription, {
-      as: 'prescriptions',
-      foreignKey: 'prescriptionId',
-      onDelete: 'CASCADE'
+      as: 'prescription',
+      onDelete: 'CASCADE',
+      foreignKey: 'prescriptionId'
     });
   };
   return User;

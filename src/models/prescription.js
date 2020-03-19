@@ -2,6 +2,14 @@ module.exports = (sequelize, DataTypes) => {
   const Prescription = sequelize.define(
     'Prescription',
     {
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      prescriptionId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       drugName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -26,15 +34,16 @@ module.exports = (sequelize, DataTypes) => {
           'Morning Afternoon',
           'Afternoon Evening',
           'Morning Afternoon Evening'
-        ]),
-        allowNull: false
+        ])
       },
-      verifyDrugUsage: DataTypes.INTEGER
+      verifyDrugUsage: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
     {}
   );
   Prescription.associate = models => {
-    // associations can be defined here
     const { User } = models;
 
     Prescription.belongsTo(User, {

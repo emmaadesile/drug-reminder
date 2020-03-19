@@ -1,7 +1,7 @@
 const isEmpty = val =>
   (typeof val === 'string' && val.trim() === '') ||
   (typeof val === 'object' && Object.keys(val).length === 0) ||
-  (Array.isArray(val) && val.length === 0)
+  (Array.isArray(val) && val.length === 0);
 
 const isUndefined = val => val === undefined || val === null;
 
@@ -11,4 +11,11 @@ const validateEmail = email => {
   return regex.test(String(email).toLowerCase());
 };
 
-export { isEmpty, isUndefined, validateEmail };
+const generateId = name => {
+  const splitName = name.split(' ').join('-');
+  const randomNum = () => Math.floor(Math.random() * (100000 - 15000) + 15000)
+
+  return `${splitName}-${randomNum()}`
+};
+
+export { isEmpty, isUndefined, validateEmail, generateId };

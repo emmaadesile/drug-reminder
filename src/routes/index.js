@@ -27,4 +27,17 @@ router.post(
   PrescriptionController.addPrescription
 );
 
+// delete prescription
+router.delete(
+  '/prescription/:prescriptionId',
+  authenticateUser,
+  PrescriptionController.removePrescription
+);
+
+// edit prescription
+router.put(
+  '/prescription/:prescriptionId',
+  PrescriptionController.editPrescription
+);
+
 export default router;

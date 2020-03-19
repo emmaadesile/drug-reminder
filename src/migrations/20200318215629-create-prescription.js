@@ -7,15 +7,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      prescriptionId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       drugName: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      dosePerDay: {
+      dosePerTime: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      dosePerTime: {
+      dosePerDay: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
@@ -35,7 +43,8 @@ module.exports = {
         allowNull: false
       },
       verifyDrugUsage: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +55,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     }),
-  down: (queryInterface /* Sequelize */) =>
-    queryInterface.dropTable('Prescriptions')
+  down: (queryInterface /* Sequelize */) => {
+    return queryInterface.dropTable('Prescriptions');
+  }
 };

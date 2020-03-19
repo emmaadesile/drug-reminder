@@ -33,7 +33,7 @@ const authenticateUser = (req, res, next) => {
   if (typeof decoded.id === 'undefined') {
     return res.status(403).json({
       status: 'error',
-      error: 'token has missing properties'
+      error: 'token is expired or invalid'
     });
   }
 
